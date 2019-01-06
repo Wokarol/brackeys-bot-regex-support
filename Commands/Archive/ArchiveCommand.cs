@@ -35,7 +35,7 @@ namespace BrackeysBot.Commands.Archive
         [HelpData("archive <channel> <title>", "Archives the given channel.")]
         public async Task ArchiveChannel(ISocketMessageChannel channel, [Remainder]string title)
         {
-            var messages = await channel.GetMessagesAsync().Flatten();
+            var messages = (await channel.GetMessagesAsync().Flatten()).Reverse();
 
             using (ChannelArchive archive = new ChannelArchive(title))
             {
